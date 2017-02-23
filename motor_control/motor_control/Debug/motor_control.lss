@@ -3,27 +3,29 @@ motor_control.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000216  2**0
+  0 .data         00000000  00800100  00800100  000001f6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001c2  00000000  00000000  00000054  2**1
+  1 .text         000001a2  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000216  2**0
+  2 .comment      00000030  00000000  00000000  000001f6  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000248  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000228  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000a0  00000000  00000000  00000288  2**0
+  4 .debug_aranges 000000a8  00000000  00000000  00000268  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000003c4  00000000  00000000  00000328  2**0
+  5 .debug_info   0000041c  00000000  00000000  00000310  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000027a  00000000  00000000  000006ec  2**0
+  6 .debug_abbrev 00000289  00000000  00000000  0000072c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000003f4  00000000  00000000  00000966  2**0
+  7 .debug_line   000003ee  00000000  00000000  000009b5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000ec  00000000  00000000  00000d5c  2**2
+  8 .debug_frame  000000fc  00000000  00000000  00000da4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000021e  00000000  00000000  00000e48  2**0
+  9 .debug_str    0000024d  00000000  00000000  00000ea0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000070  00000000  00000000  00001066  2**0
+ 10 .debug_loc    0000003c  00000000  00000000  000010ed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000078  00000000  00000000  00001129  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -111,233 +113,200 @@ Disassembly of section .text:
   9a:	d0 e1       	ldi	r29, 0x10	; 16
   9c:	de bf       	out	0x3e, r29	; 62
   9e:	cd bf       	out	0x3d, r28	; 61
-  a0:	38 d0       	rcall	.+112    	; 0x112 <main>
-  a2:	8d c0       	rjmp	.+282    	; 0x1be <_exit>
+  a0:	2b d0       	rcall	.+86     	; 0xf8 <main>
+  a2:	7d c0       	rjmp	.+250    	; 0x19e <_exit>
 
 000000a4 <__bad_interrupt>:
   a4:	ad cf       	rjmp	.-166    	; 0x0 <__vectors>
 
-000000a6 <adc_enable>:
-	
-}
-
-void adc_enable(void){
-	//Enables ADC, turn off before go into sleep mode
-	set_bit(ADCSRA, ADEN);
-  a6:	ea e7       	ldi	r30, 0x7A	; 122
-  a8:	f0 e0       	ldi	r31, 0x00	; 0
-  aa:	80 81       	ld	r24, Z
-  ac:	80 68       	ori	r24, 0x80	; 128
-  ae:	80 83       	st	Z, r24
-  b0:	08 95       	ret
-
-000000b2 <start_conv>:
-}
-
+000000a6 <adc_init>:
 void start_conv(void){
 	set_bit(ADCSRA, ADSC);
+}
+
+void adc_disenable(void){
+	clear_bit(ADCSRA, ADEN);
+  a6:	80 98       	cbi	0x10, 0	; 16
+  a8:	ec e7       	ldi	r30, 0x7C	; 124
+  aa:	f0 e0       	ldi	r31, 0x00	; 0
+  ac:	80 81       	ld	r24, Z
+  ae:	80 64       	ori	r24, 0x40	; 64
+  b0:	80 83       	st	Z, r24
   b2:	ea e7       	ldi	r30, 0x7A	; 122
   b4:	f0 e0       	ldi	r31, 0x00	; 0
   b6:	80 81       	ld	r24, Z
-  b8:	80 64       	ori	r24, 0x40	; 64
+  b8:	84 60       	ori	r24, 0x04	; 4
   ba:	80 83       	st	Z, r24
-  bc:	08 95       	ret
-
-000000be <adc_init>:
-#include "adc.h"
-
-
-void adc_init(void){
-	//Internal 2.56V voltage reference with external capacitor on AREF pin
-	set_bit(ADMUX, REFS1);
-  be:	ec e7       	ldi	r30, 0x7C	; 124
-  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  bc:	80 81       	ld	r24, Z
+  be:	82 60       	ori	r24, 0x02	; 2
+  c0:	80 83       	st	Z, r24
   c2:	80 81       	ld	r24, Z
   c4:	80 68       	ori	r24, 0x80	; 128
   c6:	80 83       	st	Z, r24
-	set_bit(ADMUX, REFS0);
-  c8:	80 81       	ld	r24, Z
-  ca:	80 64       	ori	r24, 0x40	; 64
-  cc:	80 83       	st	Z, r24
-	//Single ended input on ADC0
-	clear_bit(ADMUX, MUX0);
-  ce:	80 81       	ld	r24, Z
-  d0:	8e 7f       	andi	r24, 0xFE	; 254
-  d2:	80 83       	st	Z, r24
-	clear_bit(ADMUX, MUX1);
-  d4:	80 81       	ld	r24, Z
-  d6:	8d 7f       	andi	r24, 0xFD	; 253
-  d8:	80 83       	st	Z, r24
-	clear_bit(ADMUX, MUX2);
-  da:	80 81       	ld	r24, Z
-  dc:	8b 7f       	andi	r24, 0xFB	; 251
-  de:	80 83       	st	Z, r24
-	clear_bit(ADMUX, MUX3);
-  e0:	80 81       	ld	r24, Z
-  e2:	87 7f       	andi	r24, 0xF7	; 247
-  e4:	80 83       	st	Z, r24
-	clear_bit(ADMUX, MUX4);
-  e6:	80 81       	ld	r24, Z
-  e8:	8f 7e       	andi	r24, 0xEF	; 239
-  ea:	80 83       	st	Z, r24
-	
-	//ADC Auto trigger Enable
-	set_bit(ADCSRA, ADEN);
-  ec:	ea e7       	ldi	r30, 0x7A	; 122
-  ee:	f0 e0       	ldi	r31, 0x00	; 0
-  f0:	80 81       	ld	r24, Z
-  f2:	80 68       	ori	r24, 0x80	; 128
-  f4:	80 83       	st	Z, r24
-	
-	//Free Running mode
-	clear_bit(ADCSRB, ADTS0);
-  f6:	eb e7       	ldi	r30, 0x7B	; 123
-  f8:	f0 e0       	ldi	r31, 0x00	; 0
-  fa:	80 81       	ld	r24, Z
-  fc:	8e 7f       	andi	r24, 0xFE	; 254
-  fe:	80 83       	st	Z, r24
-	clear_bit(ADCSRB, ADTS1);
- 100:	80 81       	ld	r24, Z
- 102:	8d 7f       	andi	r24, 0xFD	; 253
- 104:	80 83       	st	Z, r24
-	clear_bit(ADCSRB, ADTS2);
- 106:	80 81       	ld	r24, Z
- 108:	8b 7f       	andi	r24, 0xFB	; 251
- 10a:	80 83       	st	Z, r24
-	
-	adc_enable();
- 10c:	cc df       	rcall	.-104    	; 0xa6 <adc_enable>
-	start_conv();
- 10e:	d1 cf       	rjmp	.-94     	; 0xb2 <start_conv>
- 110:	08 95       	ret
+  c8:	08 95       	ret
 
-00000112 <main>:
+000000ca <adc_read>:
+}
+
+uint8_t adc_read(void){
+	ADMUX |= 0x00;
+  ca:	ec e7       	ldi	r30, 0x7C	; 124
+  cc:	f0 e0       	ldi	r31, 0x00	; 0
+  ce:	80 81       	ld	r24, Z
+  d0:	80 83       	st	Z, r24
+	/* Start the conversion */
+	set_bit(ADCSRA, ADSC);
+  d2:	ea e7       	ldi	r30, 0x7A	; 122
+  d4:	f0 e0       	ldi	r31, 0x00	; 0
+  d6:	80 81       	ld	r24, Z
+  d8:	80 64       	ori	r24, 0x40	; 64
+  da:	80 83       	st	Z, r24
+	/* Wait for the conversion to complete */
+	while(test_bit(ADCSRA, ADSC));
+  dc:	80 81       	ld	r24, Z
+  de:	86 fd       	sbrc	r24, 6
+  e0:	fd cf       	rjmp	.-6      	; 0xdc <adc_read+0x12>
+	
+	unsigned int full_value = 0;
+	full_value = ADC;
+  e2:	80 91 78 00 	lds	r24, 0x0078
+  e6:	90 91 79 00 	lds	r25, 0x0079
+  ea:	8f 3f       	cpi	r24, 0xFF	; 255
+  ec:	91 05       	cpc	r25, r1
+  ee:	19 f0       	breq	.+6      	; 0xf6 <adc_read+0x2c>
+  f0:	10 f0       	brcs	.+4      	; 0xf6 <adc_read+0x2c>
+  f2:	8f ef       	ldi	r24, 0xFF	; 255
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+	if(full_value > 255)
+		full_value = 255;
+	else if(full_value < 0)
+		full_value = 0;
+	return full_value;
+  f6:	08 95       	ret
+
+000000f8 <main>:
 
 //int max_allowed = nax_value(30km/t,15A)
 
 int main(void)
 {
     pwm_init();
- 112:	11 d0       	rcall	.+34     	; 0x136 <pwm_init>
+  f8:	0e d0       	rcall	.+28     	; 0x116 <pwm_init>
 	adc_init();
- 114:	d4 df       	rcall	.-88     	; 0xbe <adc_init>
-		
+  fa:	d5 df       	rcall	.-86     	; 0xa6 <adc_init>
 	
 		set_pwm_A(pwm_value);
 		*/
 		
-		a_val = ADC;
- 116:	08 e7       	ldi	r16, 0x78	; 120
- 118:	10 e0       	ldi	r17, 0x00	; 0
- 11a:	f8 01       	movw	r30, r16
- 11c:	c0 81       	ld	r28, Z
- 11e:	d1 81       	ldd	r29, Z+1	; 0x01
+		
+		a_value = adc_read();
+  fc:	e6 df       	rcall	.-52     	; 0xca <adc_read>
+  fe:	c8 2f       	mov	r28, r24
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 120:	83 ec       	ldi	r24, 0xC3	; 195
- 122:	99 e0       	ldi	r25, 0x09	; 9
- 124:	01 97       	sbiw	r24, 0x01	; 1
- 126:	f1 f7       	brne	.-4      	; 0x124 <main+0x12>
- 128:	00 c0       	rjmp	.+0      	; 0x12a <main+0x18>
- 12a:	00 00       	nop
+ 100:	83 ec       	ldi	r24, 0xC3	; 195
+ 102:	99 e0       	ldi	r25, 0x09	; 9
+ 104:	01 97       	sbiw	r24, 0x01	; 1
+ 106:	f1 f7       	brne	.-4      	; 0x104 <main+0xc>
+ 108:	00 c0       	rjmp	.+0      	; 0x10a <main+0x12>
+ 10a:	00 00       	nop
 		_delay_ms(10);
 		//printf(a_val);
-		set_pwm_A(a_val);
- 12c:	8c 2f       	mov	r24, r28
- 12e:	3b d0       	rcall	.+118    	; 0x1a6 <set_pwm_A>
-		set_pwm_B(a_val);
- 130:	8c 2f       	mov	r24, r28
- 132:	3f d0       	rcall	.+126    	; 0x1b2 <set_pwm_B>
-		
+		set_pwm_A(a_value);
+ 10c:	8c 2f       	mov	r24, r28
+ 10e:	3b d0       	rcall	.+118    	; 0x186 <set_pwm_A>
+		set_pwm_B(a_value);
+ 110:	8c 2f       	mov	r24, r28
+ 112:	3f d0       	rcall	.+126    	; 0x192 <set_pwm_B>
 	}
- 134:	f2 cf       	rjmp	.-28     	; 0x11a <main+0x8>
+ 114:	f3 cf       	rjmp	.-26     	; 0xfc <main+0x4>
 
-00000136 <pwm_init>:
+00000116 <pwm_init>:
 
 void pwm_A_off(void){
 	OCR3A = 0x00;
 }
 void pwm_B_off(void){
 	OCR3B = 0x00;
- 136:	73 98       	cbi	0x0e, 3	; 14
- 138:	6b 9a       	sbi	0x0d, 3	; 13
- 13a:	74 98       	cbi	0x0e, 4	; 14
- 13c:	6c 9a       	sbi	0x0d, 4	; 13
- 13e:	a1 e9       	ldi	r26, 0x91	; 145
- 140:	b0 e0       	ldi	r27, 0x00	; 0
- 142:	8c 91       	ld	r24, X
- 144:	80 61       	ori	r24, 0x10	; 16
- 146:	8c 93       	st	X, r24
- 148:	8c 91       	ld	r24, X
- 14a:	88 60       	ori	r24, 0x08	; 8
- 14c:	8c 93       	st	X, r24
- 14e:	e0 e9       	ldi	r30, 0x90	; 144
- 150:	f0 e0       	ldi	r31, 0x00	; 0
- 152:	80 81       	ld	r24, Z
- 154:	82 60       	ori	r24, 0x02	; 2
- 156:	80 83       	st	Z, r24
- 158:	80 81       	ld	r24, Z
- 15a:	8e 7f       	andi	r24, 0xFE	; 254
- 15c:	80 83       	st	Z, r24
- 15e:	80 81       	ld	r24, Z
- 160:	80 68       	ori	r24, 0x80	; 128
- 162:	80 83       	st	Z, r24
- 164:	80 81       	ld	r24, Z
- 166:	8f 7b       	andi	r24, 0xBF	; 191
- 168:	80 83       	st	Z, r24
- 16a:	80 81       	ld	r24, Z
- 16c:	80 62       	ori	r24, 0x20	; 32
- 16e:	80 83       	st	Z, r24
- 170:	80 81       	ld	r24, Z
- 172:	8f 7e       	andi	r24, 0xEF	; 239
- 174:	80 83       	st	Z, r24
- 176:	8c 91       	ld	r24, X
- 178:	84 60       	ori	r24, 0x04	; 4
- 17a:	8c 93       	st	X, r24
- 17c:	8c 91       	ld	r24, X
- 17e:	8d 7f       	andi	r24, 0xFD	; 253
- 180:	8c 93       	st	X, r24
- 182:	8c 91       	ld	r24, X
- 184:	8e 7f       	andi	r24, 0xFE	; 254
- 186:	8c 93       	st	X, r24
- 188:	8f ef       	ldi	r24, 0xFF	; 255
- 18a:	90 e0       	ldi	r25, 0x00	; 0
- 18c:	90 93 97 00 	sts	0x0097, r25
- 190:	80 93 96 00 	sts	0x0096, r24
- 194:	10 92 99 00 	sts	0x0099, r1
- 198:	10 92 98 00 	sts	0x0098, r1
- 19c:	10 92 9b 00 	sts	0x009B, r1
- 1a0:	10 92 9a 00 	sts	0x009A, r1
- 1a4:	08 95       	ret
+ 116:	73 98       	cbi	0x0e, 3	; 14
+ 118:	6b 9a       	sbi	0x0d, 3	; 13
+ 11a:	74 98       	cbi	0x0e, 4	; 14
+ 11c:	6c 9a       	sbi	0x0d, 4	; 13
+ 11e:	a1 e9       	ldi	r26, 0x91	; 145
+ 120:	b0 e0       	ldi	r27, 0x00	; 0
+ 122:	8c 91       	ld	r24, X
+ 124:	80 61       	ori	r24, 0x10	; 16
+ 126:	8c 93       	st	X, r24
+ 128:	8c 91       	ld	r24, X
+ 12a:	88 60       	ori	r24, 0x08	; 8
+ 12c:	8c 93       	st	X, r24
+ 12e:	e0 e9       	ldi	r30, 0x90	; 144
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
+ 132:	80 81       	ld	r24, Z
+ 134:	82 60       	ori	r24, 0x02	; 2
+ 136:	80 83       	st	Z, r24
+ 138:	80 81       	ld	r24, Z
+ 13a:	8e 7f       	andi	r24, 0xFE	; 254
+ 13c:	80 83       	st	Z, r24
+ 13e:	80 81       	ld	r24, Z
+ 140:	80 68       	ori	r24, 0x80	; 128
+ 142:	80 83       	st	Z, r24
+ 144:	80 81       	ld	r24, Z
+ 146:	8f 7b       	andi	r24, 0xBF	; 191
+ 148:	80 83       	st	Z, r24
+ 14a:	80 81       	ld	r24, Z
+ 14c:	80 62       	ori	r24, 0x20	; 32
+ 14e:	80 83       	st	Z, r24
+ 150:	80 81       	ld	r24, Z
+ 152:	8f 7e       	andi	r24, 0xEF	; 239
+ 154:	80 83       	st	Z, r24
+ 156:	8c 91       	ld	r24, X
+ 158:	8b 7f       	andi	r24, 0xFB	; 251
+ 15a:	8c 93       	st	X, r24
+ 15c:	8c 91       	ld	r24, X
+ 15e:	82 60       	ori	r24, 0x02	; 2
+ 160:	8c 93       	st	X, r24
+ 162:	8c 91       	ld	r24, X
+ 164:	81 60       	ori	r24, 0x01	; 1
+ 166:	8c 93       	st	X, r24
+ 168:	8f ef       	ldi	r24, 0xFF	; 255
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	90 93 97 00 	sts	0x0097, r25
+ 170:	80 93 96 00 	sts	0x0096, r24
+ 174:	10 92 99 00 	sts	0x0099, r1
+ 178:	10 92 98 00 	sts	0x0098, r1
+ 17c:	10 92 9b 00 	sts	0x009B, r1
+ 180:	10 92 9a 00 	sts	0x009A, r1
+ 184:	08 95       	ret
 
-000001a6 <set_pwm_A>:
+00000186 <set_pwm_A>:
 }
 
 void set_pwm_A(uint8_t duty){
 	//range from 0x00 to ICR3 value(see init)
 	OCR3A = duty;
- 1a6:	90 e0       	ldi	r25, 0x00	; 0
- 1a8:	90 93 99 00 	sts	0x0099, r25
- 1ac:	80 93 98 00 	sts	0x0098, r24
- 1b0:	08 95       	ret
+ 186:	90 e0       	ldi	r25, 0x00	; 0
+ 188:	90 93 99 00 	sts	0x0099, r25
+ 18c:	80 93 98 00 	sts	0x0098, r24
+ 190:	08 95       	ret
 
-000001b2 <set_pwm_B>:
+00000192 <set_pwm_B>:
 }
 
 void set_pwm_B(uint8_t duty){
 	//range from 0x00 to ICR3 value(see init)
 	OCR3B = duty;
- 1b2:	90 e0       	ldi	r25, 0x00	; 0
- 1b4:	90 93 9b 00 	sts	0x009B, r25
- 1b8:	80 93 9a 00 	sts	0x009A, r24
- 1bc:	08 95       	ret
+ 192:	90 e0       	ldi	r25, 0x00	; 0
+ 194:	90 93 9b 00 	sts	0x009B, r25
+ 198:	80 93 9a 00 	sts	0x009A, r24
+ 19c:	08 95       	ret
 
-000001be <_exit>:
- 1be:	f8 94       	cli
+0000019e <_exit>:
+ 19e:	f8 94       	cli
 
-000001c0 <__stop_program>:
- 1c0:	ff cf       	rjmp	.-2      	; 0x1c0 <__stop_program>
+000001a0 <__stop_program>:
+ 1a0:	ff cf       	rjmp	.-2      	; 0x1a0 <__stop_program>

@@ -30,9 +30,9 @@ void pwm_init(void){
 	clear_bit(TCCR3A, COM3B0);
 	
 	//Set prescale clk/256 for timer 3
-	set_bit(TCCR3B, CS32);
-	clear_bit(TCCR3B, CS31);
-	clear_bit(TCCR3B, CS30);
+	clear_bit(TCCR3B, CS32);
+	set_bit(TCCR3B, CS31);
+	set_bit(TCCR3B, CS30);
 	
 	//Set top value for timer 3
 	ICR3 = 0xFF;

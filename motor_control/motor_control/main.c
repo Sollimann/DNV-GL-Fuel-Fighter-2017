@@ -24,10 +24,11 @@ int main(void)
     pwm_init();
 	adc_init();
 	
-	uint16_t a_val;
+	uint16_t a_value;
 	
 	while (1)
 	{
+		
 		/*
 		uint8_t pwm_value;
 		if (new_can_frame())
@@ -40,7 +41,6 @@ int main(void)
 			}
 			new_can_frame();
 		}
-	
 		//roof=max_value(speed, amp)
 		/*
 		if (pwm_value>roof)
@@ -52,12 +52,12 @@ int main(void)
 		set_pwm_A(pwm_value);
 		*/
 		
-		a_val = ADC;
+		
+		a_value = adc_read();
 		_delay_ms(10);
 		//printf(a_val);
-		set_pwm_A(a_val);
-		set_pwm_B(a_val);
-		
+		set_pwm_A(a_value);
+		set_pwm_B(a_value);
 	}
     
 }

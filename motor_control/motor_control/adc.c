@@ -11,27 +11,17 @@
 
 
 void adc_init(void){
-	//Internal 2.56V voltage reference with external capacitor on AREF pin
-	set_bit(ADMUX, REFS1);
+	clear_bit(DDRF, DDF0);
+	/* Voltage ref AVcc with external capacitor on AREF pin */
 	set_bit(ADMUX, REFS0);
-	//Single ended input on ADC0
-	clear_bit(ADMUX, MUX0);
-	clear_bit(ADMUX, MUX1);
-	clear_bit(ADMUX, MUX2);
-	clear_bit(ADMUX, MUX3);
-	clear_bit(ADMUX, MUX4);
-	
-	//ADC Auto trigger Enable
+	/* Select prescaler to 64 --> conversion f= 125kHz */
+	set_bit(ADCSRA, ADPS2);
+	set_bit(ADCSRA, ADPS1);
+	/* Enable the ADC */
 	set_bit(ADCSRA, ADEN);
-	
-	//Free Running mode
-	clear_bit(ADCSRB, ADTS0);
-	clear_bit(ADCSRB, ADTS1);
-	clear_bit(ADCSRB, ADTS2);
-	
-	adc_enable();
-	start_conv();
-	
+	/* Turn on the ADC Conversion Complete Interrupt */
+	//set_bit(ADCSRA, ADIE);
+
 	
 }
 
@@ -46,4 +36,20 @@ void start_conv(void){
 
 void adc_disenable(void){
 	clear_bit(ADCSRA, ADEN);
+}
+
+uint8_t adc_read(void){
+	ADMUX |= 0x00;
+	/* Start the conversion */
+	set_bit(ADCSRA, ADSC);
+	/* Wait for the conversion to complete */
+	while(test_bit(ADCSRA, ADSC));
+	
+	unsigned int full_value = 0;
+	full_value = ADC;
+	if(full_value > 255)
+		full_value = 255;
+	else if(full_value < 0)
+		full_value = 0;
+	return full_value;
 }

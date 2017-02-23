@@ -13,7 +13,7 @@ void adc_init(void);
 void adc_enable(void);
 void adc_disenable(void);
 void start_conv(void);
-
+uint8_t adc_read(void);
 
 
 

@@ -10,6 +10,10 @@ Discarded input sections
  .text          0x00000000        0x0 adc.o
  .data          0x00000000        0x0 adc.o
  .bss           0x00000000        0x0 adc.o
+ .text.adc_enable
+                0x00000000        0xc adc.o
+ .text.start_conv
+                0x00000000        0xc adc.o
  .text.adc_disenable
                 0x00000000        0xc adc.o
  .text          0x00000000        0x0 main.o
@@ -33,7 +37,7 @@ Discarded input sections
                 0x00000000       0x38 motor_control.o
  .debug_ranges  0x00000000       0x28 motor_control.o
  .debug_line    0x00000000       0xef motor_control.o
- .debug_str     0x00000000      0x1cb motor_control.o
+ .debug_str     0x00000000      0x1e4 motor_control.o
  .comment       0x00000000       0x31 motor_control.o
  .debug_frame   0x00000000       0x54 motor_control.o
  .text          0x00000000        0x0 pwm.o
@@ -180,7 +184,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1c2
+.text           0x00000000      0x1a2
  *(.vectors)
  .vectors       0x00000000       0x94 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/at90can128/avr51/crtat90can128.o
                 0x00000000                __vector_default
@@ -272,31 +276,28 @@ END GROUP
                 0x000000a4                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.adc_enable
-                0x000000a6        0xc adc.o
-                0x000000a6                adc_enable
- .text.start_conv
-                0x000000b2        0xc adc.o
-                0x000000b2                start_conv
  .text.adc_init
-                0x000000be       0x54 adc.o
-                0x000000be                adc_init
- .text.main     0x00000112       0x24 main.o
-                0x00000112                main
+                0x000000a6       0x24 adc.o
+                0x000000a6                adc_init
+ .text.adc_read
+                0x000000ca       0x2e adc.o
+                0x000000ca                adc_read
+ .text.main     0x000000f8       0x1e main.o
+                0x000000f8                main
  .text.pwm_init
-                0x00000136       0x70 pwm.o
-                0x00000136                pwm_init
+                0x00000116       0x70 pwm.o
+                0x00000116                pwm_init
  .text.set_pwm_A
-                0x000001a6        0xc pwm.o
-                0x000001a6                set_pwm_A
+                0x00000186        0xc pwm.o
+                0x00000186                set_pwm_A
  .text.set_pwm_B
-                0x000001b2        0xc pwm.o
-                0x000001b2                set_pwm_B
-                0x000001be                . = ALIGN (0x2)
+                0x00000192        0xc pwm.o
+                0x00000192                set_pwm_B
+                0x0000019e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001be        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
-                0x000001be                _exit
-                0x000001be                exit
+ .fini9         0x0000019e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+                0x0000019e                _exit
+                0x0000019e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -315,11 +316,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001be        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000019e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001c2                _etext = .
+                0x000001a2                _etext = .
 
-.data           0x00800100        0x0 load address 0x000001c2
+.data           0x00800100        0x0 load address 0x000001a2
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -336,8 +337,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x00800100                PROVIDE (__bss_end, .)
-                0x000001c2                __data_load_start = LOADADDR (.data)
-                0x000001c2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000001a2                __data_load_start = LOADADDR (.data)
+                0x000001a2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800100        0x0
                 0x00800100                PROVIDE (__noinit_start, .)
@@ -410,53 +411,55 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xa0
+.debug_aranges  0x00000000       0xa8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x38 adc.o
+                0x00000000       0x40 adc.o
  .debug_aranges
-                0x00000038       0x28 main.o
+                0x00000040       0x28 main.o
  .debug_aranges
-                0x00000060       0x40 pwm.o
+                0x00000068       0x40 pwm.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x3c4
+.debug_info     0x00000000      0x41c
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000       0xdc adc.o
- .debug_info    0x000000dc      0x1e2 main.o
- .debug_info    0x000002be      0x106 pwm.o
+ .debug_info    0x00000000       0xfa adc.o
+ .debug_info    0x000000fa      0x21c main.o
+ .debug_info    0x00000316      0x106 pwm.o
 
-.debug_abbrev   0x00000000      0x27a
+.debug_abbrev   0x00000000      0x289
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0x76 adc.o
- .debug_abbrev  0x00000076      0x172 main.o
- .debug_abbrev  0x000001e8       0x92 pwm.o
+ .debug_abbrev  0x00000000       0x7a adc.o
+ .debug_abbrev  0x0000007a      0x17d main.o
+ .debug_abbrev  0x000001f7       0x92 pwm.o
 
-.debug_line     0x00000000      0x3f4
+.debug_line     0x00000000      0x3ee
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x12a adc.o
- .debug_line    0x0000012a      0x16c main.o
- .debug_line    0x00000296      0x15e pwm.o
+ .debug_line    0x00000000      0x12c adc.o
+ .debug_line    0x0000012c      0x164 main.o
+ .debug_line    0x00000290      0x15e pwm.o
 
-.debug_frame    0x00000000       0xec
+.debug_frame    0x00000000       0xfc
  *(.debug_frame)
- .debug_frame   0x00000000       0x54 adc.o
- .debug_frame   0x00000054       0x34 main.o
- .debug_frame   0x00000088       0x64 pwm.o
+ .debug_frame   0x00000000       0x64 adc.o
+ .debug_frame   0x00000064       0x34 main.o
+ .debug_frame   0x00000098       0x64 pwm.o
 
-.debug_str      0x00000000      0x21e
+.debug_str      0x00000000      0x24d
  *(.debug_str)
- .debug_str     0x00000000      0x172 adc.o
-                                0x1a6 (size before relaxing)
- .debug_str     0x00000172       0x88 main.o
-                                0x209 (size before relaxing)
- .debug_str     0x000001fa       0x24 pwm.o
-                                0x1b8 (size before relaxing)
+ .debug_str     0x00000000      0x1a8 adc.o
+                                0x1dc (size before relaxing)
+ .debug_str     0x000001a8       0x81 main.o
+                                0x22d (size before relaxing)
+ .debug_str     0x00000229       0x24 pwm.o
+                                0x1d1 (size before relaxing)
 
-.debug_loc
+.debug_loc      0x00000000       0x3c
  *(.debug_loc)
+ .debug_loc     0x00000000       0x14 adc.o
+ .debug_loc     0x00000014       0x28 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -476,11 +479,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x70
+.debug_ranges   0x00000000       0x78
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x28 adc.o
- .debug_ranges  0x00000028       0x18 main.o
- .debug_ranges  0x00000040       0x30 pwm.o
+ .debug_ranges  0x00000000       0x30 adc.o
+ .debug_ranges  0x00000030       0x18 main.o
+ .debug_ranges  0x00000048       0x30 pwm.o
 
 .debug_macro
  *(.debug_macro)
