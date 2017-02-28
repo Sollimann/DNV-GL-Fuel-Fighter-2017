@@ -1,0 +1,938 @@
+
+motor_control_send.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000057e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000050a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000b8  00800100  00800100  0000057e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000057e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000005b0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000e0  00000000  00000000  000005f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000008a0  00000000  00000000  000006d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000052d  00000000  00000000  00000f70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000f46  00000000  00000000  0000149d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001c0  00000000  00000000  000023e4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000a733  00000000  00000000  000025a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000401  00000000  00000000  0000ccd7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a0  00000000  00000000  0000d0d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_macro  00003db3  00000000  00000000  0000d178  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	49 c0       	rjmp	.+146    	; 0x94 <__ctors_end>
+   2:	00 00       	nop
+   4:	57 c0       	rjmp	.+174    	; 0xb4 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	55 c0       	rjmp	.+170    	; 0xb4 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	53 c0       	rjmp	.+166    	; 0xb4 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	51 c0       	rjmp	.+162    	; 0xb4 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	4f c0       	rjmp	.+158    	; 0xb4 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	4d c0       	rjmp	.+154    	; 0xb4 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	4b c0       	rjmp	.+150    	; 0xb4 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	49 c0       	rjmp	.+146    	; 0xb4 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	47 c0       	rjmp	.+142    	; 0xb4 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	45 c0       	rjmp	.+138    	; 0xb4 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	43 c0       	rjmp	.+134    	; 0xb4 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	41 c0       	rjmp	.+130    	; 0xb4 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	3f c0       	rjmp	.+126    	; 0xb4 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	3d c0       	rjmp	.+122    	; 0xb4 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	3b c0       	rjmp	.+118    	; 0xb4 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	39 c0       	rjmp	.+114    	; 0xb4 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	37 c0       	rjmp	.+110    	; 0xb4 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	a1 c0       	rjmp	.+322    	; 0x18c <__vector_18>
+  4a:	00 00       	nop
+  4c:	33 c0       	rjmp	.+102    	; 0xb4 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	31 c0       	rjmp	.+98     	; 0xb4 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	2f c0       	rjmp	.+94     	; 0xb4 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	2d c0       	rjmp	.+90     	; 0xb4 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	2b c0       	rjmp	.+86     	; 0xb4 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	29 c0       	rjmp	.+82     	; 0xb4 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	27 c0       	rjmp	.+78     	; 0xb4 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	25 c0       	rjmp	.+74     	; 0xb4 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	23 c0       	rjmp	.+70     	; 0xb4 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	21 c0       	rjmp	.+66     	; 0xb4 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	1f c0       	rjmp	.+62     	; 0xb4 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	1d c0       	rjmp	.+58     	; 0xb4 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	1b c0       	rjmp	.+54     	; 0xb4 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	19 c0       	rjmp	.+50     	; 0xb4 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	17 c0       	rjmp	.+46     	; 0xb4 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	15 c0       	rjmp	.+42     	; 0xb4 <__bad_interrupt>
+  8a:	00 00       	nop
+  8c:	13 c0       	rjmp	.+38     	; 0xb4 <__bad_interrupt>
+  8e:	00 00       	nop
+  90:	11 c0       	rjmp	.+34     	; 0xb4 <__bad_interrupt>
+	...
+
+00000094 <__ctors_end>:
+  94:	11 24       	eor	r1, r1
+  96:	1f be       	out	0x3f, r1	; 63
+  98:	cf ef       	ldi	r28, 0xFF	; 255
+  9a:	d0 e1       	ldi	r29, 0x10	; 16
+  9c:	de bf       	out	0x3e, r29	; 62
+  9e:	cd bf       	out	0x3d, r28	; 61
+
+000000a0 <__do_clear_bss>:
+  a0:	21 e0       	ldi	r18, 0x01	; 1
+  a2:	a0 e0       	ldi	r26, 0x00	; 0
+  a4:	b1 e0       	ldi	r27, 0x01	; 1
+  a6:	01 c0       	rjmp	.+2      	; 0xaa <.do_clear_bss_start>
+
+000000a8 <.do_clear_bss_loop>:
+  a8:	1d 92       	st	X+, r1
+
+000000aa <.do_clear_bss_start>:
+  aa:	a8 3b       	cpi	r26, 0xB8	; 184
+  ac:	b2 07       	cpc	r27, r18
+  ae:	e1 f7       	brne	.-8      	; 0xa8 <.do_clear_bss_loop>
+  b0:	e5 d1       	rcall	.+970    	; 0x47c <main>
+  b2:	29 c2       	rjmp	.+1106   	; 0x506 <_exit>
+
+000000b4 <__bad_interrupt>:
+  b4:	a5 cf       	rjmp	.-182    	; 0x0 <__vectors>
+
+000000b6 <adc_init>:
+void start_conv(void){
+	set_bit(ADCSRA, ADSC);
+}
+
+void adc_disenable(void){
+	clear_bit(ADCSRA, ADEN);
+  b6:	80 98       	cbi	0x10, 0	; 16
+  b8:	ec e7       	ldi	r30, 0x7C	; 124
+  ba:	f0 e0       	ldi	r31, 0x00	; 0
+  bc:	80 81       	ld	r24, Z
+  be:	80 64       	ori	r24, 0x40	; 64
+  c0:	80 83       	st	Z, r24
+  c2:	ea e7       	ldi	r30, 0x7A	; 122
+  c4:	f0 e0       	ldi	r31, 0x00	; 0
+  c6:	80 81       	ld	r24, Z
+  c8:	84 60       	ori	r24, 0x04	; 4
+  ca:	80 83       	st	Z, r24
+  cc:	80 81       	ld	r24, Z
+  ce:	82 60       	ori	r24, 0x02	; 2
+  d0:	80 83       	st	Z, r24
+  d2:	80 81       	ld	r24, Z
+  d4:	80 68       	ori	r24, 0x80	; 128
+  d6:	80 83       	st	Z, r24
+  d8:	08 95       	ret
+
+000000da <adc_read>:
+}
+
+uint8_t adc_read(void){
+	ADMUX |= 0x00;
+  da:	ec e7       	ldi	r30, 0x7C	; 124
+  dc:	f0 e0       	ldi	r31, 0x00	; 0
+  de:	80 81       	ld	r24, Z
+  e0:	80 83       	st	Z, r24
+	/* Start the conversion */
+	set_bit(ADCSRA, ADSC);
+  e2:	ea e7       	ldi	r30, 0x7A	; 122
+  e4:	f0 e0       	ldi	r31, 0x00	; 0
+  e6:	80 81       	ld	r24, Z
+  e8:	80 64       	ori	r24, 0x40	; 64
+  ea:	80 83       	st	Z, r24
+	/* Wait for the conversion to complete */
+	while(test_bit(ADCSRA, ADSC));
+  ec:	80 81       	ld	r24, Z
+  ee:	86 fd       	sbrc	r24, 6
+  f0:	fd cf       	rjmp	.-6      	; 0xec <adc_read+0x12>
+	
+	unsigned int full_value = 0;
+	full_value = ADC;
+  f2:	80 91 78 00 	lds	r24, 0x0078
+  f6:	90 91 79 00 	lds	r25, 0x0079
+  fa:	8f 3f       	cpi	r24, 0xFF	; 255
+  fc:	91 05       	cpc	r25, r1
+  fe:	19 f0       	breq	.+6      	; 0x106 <adc_read+0x2c>
+ 100:	10 f0       	brcs	.+4      	; 0x106 <adc_read+0x2c>
+ 102:	8f ef       	ldi	r24, 0xFF	; 255
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+	if(full_value > 255)
+		full_value = 255;
+	else if(full_value < 0)
+		full_value = 0;
+	return full_value;
+ 106:	08 95       	ret
+
+00000108 <init_can>:
+
+/**************************************************************************************************
+*   init_can(); - See 'can.h' Header file for Description
+**************************************************************************************************/
+void init_can(void)
+{
+ 108:	cf 93       	push	r28
+ 10a:	df 93       	push	r29
+ CANGCON = _BV(SWRES);							//Reset CAN controller
+ 10c:	e8 ed       	ldi	r30, 0xD8	; 216
+ 10e:	f0 e0       	ldi	r31, 0x00	; 0
+ 110:	81 e0       	ldi	r24, 0x01	; 1
+ 112:	80 83       	st	Z, r24
+
+ CANBT1 = (BRP_VALUE - 1) << 1;
+ 114:	8e ef       	ldi	r24, 0xFE	; 254
+ 116:	80 93 e2 00 	sts	0x00E2, r24
+ CANBT2 = ((SJW_VALUE - 1) << 5) | ((PROP_SEG - 1) << 1);
+ 11a:	8c e0       	ldi	r24, 0x0C	; 12
+ 11c:	80 93 e3 00 	sts	0x00E3, r24
+ CANBT3 = ((PHASE_SEG_2 - 1) << 4) | ((PHASE_SEG_1 - 1) << 1) | 1;
+ 120:	87 e3       	ldi	r24, 0x37	; 55
+ 122:	80 93 e4 00 	sts	0x00E4, r24
+
+ CANTIM = 0;
+ 126:	10 92 e7 00 	sts	0x00E7, r1
+ 12a:	10 92 e6 00 	sts	0x00E6, r1
+ CANTTC = 0;
+ 12e:	10 92 e9 00 	sts	0x00E9, r1
+ 132:	10 92 e8 00 	sts	0x00E8, r1
+
+ CANHPMOB = 0;
+ 136:	10 92 ec 00 	sts	0x00EC, r1
+ CANTCON = 0;
+ 13a:	10 92 e5 00 	sts	0x00E5, r1
+
+ CANPAGE = 0 << 4;								//Switch to Mob 0 access
+ 13e:	cd ee       	ldi	r28, 0xED	; 237
+ 140:	d0 e0       	ldi	r29, 0x00	; 0
+ 142:	18 82       	st	Y, r1
+ CANSTMOB = 0;
+ 144:	ae ee       	ldi	r26, 0xEE	; 238
+ 146:	b0 e0       	ldi	r27, 0x00	; 0
+ 148:	1c 92       	st	X, r1
+ CANPAGE = 1 << 4;								//Switch to Mob 1 access
+ 14a:	80 e1       	ldi	r24, 0x10	; 16
+ 14c:	88 83       	st	Y, r24
+ CANSTMOB = 0;
+ 14e:	1c 92       	st	X, r1
+ #if CAN_V==CAN2A
+ CANIDM4 = ACCPT_MASK_RTR << 2 | ACCPT_MASK_IDE;
+ 150:	10 92 f4 00 	sts	0x00F4, r1
+ CANIDM2 = (ACCPT_MASK_ID << 5) & 0xFF;
+ 154:	10 92 f6 00 	sts	0x00F6, r1
+ CANIDM1 = (ACCPT_MASK_ID >> 3) & 0xFF;
+ 158:	10 92 f7 00 	sts	0x00F7, r1
+ CANIDT4 = ACCPT_TAG_RTR << 2 | ACCPT_TAG_RB0;
+ 15c:	10 92 f0 00 	sts	0x00F0, r1
+ CANIDT2 = (ACCPT_TAG_ID << 5) & 0xFF;
+ 160:	10 92 f2 00 	sts	0x00F2, r1
+ CANIDT1 = (ACCPT_TAG_ID >> 3) & 0xFF;
+ 164:	10 92 f3 00 	sts	0x00F3, r1
+ CANIDT3 = (ACCPT_TAG_ID >> 5) & 0xFF;
+ CANIDT2 = (ACCPT_TAG_ID >> 13) & 0xFF;
+ CANIDT1 = ((long)ACCPT_TAG_ID >> 21) & 0xFF;
+ #endif
+
+ CANCDMOB = _BV(CONMOB1) | CAN_IDE;			//Set Mob 1 as RX and IDE
+ 168:	80 e8       	ldi	r24, 0x80	; 128
+ 16a:	80 93 ef 00 	sts	0x00EF, r24
+
+ CANEN2 = _BV(ENMOB1) | _BV(ENMOB0);			//Enable Mob 0 and 1
+ 16e:	83 e0       	ldi	r24, 0x03	; 3
+ 170:	80 93 dc 00 	sts	0x00DC, r24
+ CANIE2 = _BV(ENMOB1) | _BV(ENMOB0);			//Enable Mob 0 and 1 Interrupt
+ 174:	80 93 de 00 	sts	0x00DE, r24
+ CANGIE = _BV(ENIT) | _BV(ENRX) | _BV(ENTX);	//Enable TX and RX interrupt
+ 178:	80 eb       	ldi	r24, 0xB0	; 176
+ 17a:	80 93 db 00 	sts	0x00DB, r24
+ CANGCON = _BV(ENASTB);							//Enable CAN controller
+ 17e:	82 e0       	ldi	r24, 0x02	; 2
+ 180:	80 83       	st	Z, r24
+
+ reset = 0;
+ 182:	10 92 00 01 	sts	0x0100, r1
+}
+ 186:	df 91       	pop	r29
+ 188:	cf 91       	pop	r28
+ 18a:	08 95       	ret
+
+0000018c <__vector_18>:
+
+/**************************************************************************************************
+*   CAN ISR - See 'can.h' Header file for Description
+**************************************************************************************************/
+ISR(CANIT_vect)
+{
+ 18c:	1f 92       	push	r1
+ 18e:	0f 92       	push	r0
+ 190:	0f b6       	in	r0, 0x3f	; 63
+ 192:	0f 92       	push	r0
+ 194:	11 24       	eor	r1, r1
+ 196:	0b b6       	in	r0, 0x3b	; 59
+ 198:	0f 92       	push	r0
+ 19a:	2f 93       	push	r18
+ 19c:	3f 93       	push	r19
+ 19e:	4f 93       	push	r20
+ 1a0:	5f 93       	push	r21
+ 1a2:	6f 93       	push	r22
+ 1a4:	8f 93       	push	r24
+ 1a6:	9f 93       	push	r25
+ 1a8:	af 93       	push	r26
+ 1aa:	bf 93       	push	r27
+ 1ac:	ef 93       	push	r30
+ 1ae:	ff 93       	push	r31
+ 1b0:	cf 93       	push	r28
+ 1b2:	df 93       	push	r29
+ 1b4:	1f 92       	push	r1
+ 1b6:	cd b7       	in	r28, 0x3d	; 61
+ 1b8:	de b7       	in	r29, 0x3e	; 62
+ unsigned char can_irq;
+ volatile unsigned char canstmod;
+
+ can_irq = CANSIT2;
+ 1ba:	80 91 e0 00 	lds	r24, 0x00E0
+
+ // TX
+ if (can_irq & _BV(SIT0) && CANIE2 & _BV(ENMOB0)) {
+ 1be:	80 ff       	sbrs	r24, 0
+ 1c0:	47 c0       	rjmp	.+142    	; 0x250 <__vector_18+0xc4>
+ 1c2:	90 91 de 00 	lds	r25, 0x00DE
+ 1c6:	90 ff       	sbrs	r25, 0
+ 1c8:	43 c0       	rjmp	.+134    	; 0x250 <__vector_18+0xc4>
+ 	//Select TX Mob (=Mob0)
+	CANPAGE = 0 << 4;
+ 1ca:	10 92 ed 00 	sts	0x00ED, r1
+	canstmod = CANSTMOB;
+ 1ce:	ee ee       	ldi	r30, 0xEE	; 238
+ 1d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d2:	80 81       	ld	r24, Z
+ 1d4:	89 83       	std	Y+1, r24	; 0x01
+	CANSTMOB&= ~_BV(TXOK);		//clear MB1, TX interrupt
+ 1d6:	80 81       	ld	r24, Z
+ 1d8:	8f 7b       	andi	r24, 0xBF	; 191
+ 1da:	80 83       	st	Z, r24
+	if (tx_on != tx_off) {
+ 1dc:	80 91 05 01 	lds	r24, 0x0105
+ 1e0:	90 91 04 01 	lds	r25, 0x0104
+ 1e4:	98 17       	cp	r25, r24
+ 1e6:	89 f1       	breq	.+98     	; 0x24a <__vector_18+0xbe>
+ 		unsigned char pos;
+ 		pos = tx_off & (TX_SIZE-1);
+ 1e8:	87 70       	andi	r24, 0x07	; 7
+ 		//set ID
+		#if CAN_V==CAN2A
+		CANIDT4 = tx_frames[pos].array[0];
+ 1ea:	2b e0       	ldi	r18, 0x0B	; 11
+ 1ec:	82 9f       	mul	r24, r18
+ 1ee:	c0 01       	movw	r24, r0
+ 1f0:	11 24       	eor	r1, r1
+ 1f2:	fc 01       	movw	r30, r24
+ 1f4:	e8 5f       	subi	r30, 0xF8	; 248
+ 1f6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1f8:	20 81       	ld	r18, Z
+ 1fa:	20 93 f0 00 	sts	0x00F0, r18
+		CANIDT2 = tx_frames[pos].array[0];
+ 1fe:	20 81       	ld	r18, Z
+ 200:	20 93 f2 00 	sts	0x00F2, r18
+		CANIDT1 = tx_frames[pos].array[1];
+ 204:	21 81       	ldd	r18, Z+1	; 0x01
+ 206:	20 93 f3 00 	sts	0x00F3, r18
+		CANIDT1 = tx_frames[pos].array[3];
+		#endif
+
+
+		//program data registers - auto increment CANMSG
+		CANMSG = tx_frames[pos].data[0];
+ 20a:	23 81       	ldd	r18, Z+3	; 0x03
+ 20c:	aa ef       	ldi	r26, 0xFA	; 250
+ 20e:	b0 e0       	ldi	r27, 0x00	; 0
+ 210:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[1];
+ 212:	24 81       	ldd	r18, Z+4	; 0x04
+ 214:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[2];
+ 216:	25 81       	ldd	r18, Z+5	; 0x05
+ 218:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[3];
+ 21a:	26 81       	ldd	r18, Z+6	; 0x06
+ 21c:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[4];
+ 21e:	27 81       	ldd	r18, Z+7	; 0x07
+ 220:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[5];
+ 222:	20 85       	ldd	r18, Z+8	; 0x08
+ 224:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[6];
+ 226:	21 85       	ldd	r18, Z+9	; 0x09
+ 228:	2c 93       	st	X, r18
+		CANMSG = tx_frames[pos].data[7];
+ 22a:	22 85       	ldd	r18, Z+10	; 0x0a
+ 22c:	2c 93       	st	X, r18
+		//set length and request send
+		CANCDMOB = _BV(CONMOB0) | CAN_IDE | tx_frames[pos].length;
+ 22e:	fc 01       	movw	r30, r24
+ 230:	e6 5f       	subi	r30, 0xF6	; 246
+ 232:	fe 4f       	sbci	r31, 0xFE	; 254
+ 234:	80 81       	ld	r24, Z
+ 236:	8f 70       	andi	r24, 0x0F	; 15
+ 238:	80 64       	ori	r24, 0x40	; 64
+ 23a:	80 93 ef 00 	sts	0x00EF, r24
+		tx_off++;
+ 23e:	80 91 05 01 	lds	r24, 0x0105
+ 242:	8f 5f       	subi	r24, 0xFF	; 255
+ 244:	80 93 05 01 	sts	0x0105, r24
+ 248:	7c c0       	rjmp	.+248    	; 0x342 <__vector_18+0x1b6>
+ 	}
+ 	else {
+		tx_busy = 0;
+ 24a:	10 92 03 01 	sts	0x0103, r1
+ 24e:	79 c0       	rjmp	.+242    	; 0x342 <__vector_18+0x1b6>
+	}
+ }
+ // RX
+ else if (can_irq & _BV(SIT1) && CANIE2 & _BV(ENMOB1)) {
+ 250:	81 ff       	sbrs	r24, 1
+ 252:	77 c0       	rjmp	.+238    	; 0x342 <__vector_18+0x1b6>
+ 254:	80 91 de 00 	lds	r24, 0x00DE
+ 258:	81 ff       	sbrs	r24, 1
+ 25a:	73 c0       	rjmp	.+230    	; 0x342 <__vector_18+0x1b6>
+ 	//Select RX Mob (=Mob1)
+	CANPAGE = 1 << 4;							//Switch to Mob 1 access
+ 25c:	80 e1       	ldi	r24, 0x10	; 16
+ 25e:	80 93 ed 00 	sts	0x00ED, r24
+	if (((rx_on - rx_off) & RX_ABS_MASK) < RX_SIZE) {
+ 262:	80 91 01 01 	lds	r24, 0x0101
+ 266:	28 2f       	mov	r18, r24
+ 268:	30 e0       	ldi	r19, 0x00	; 0
+ 26a:	90 91 02 01 	lds	r25, 0x0102
+ 26e:	29 1b       	sub	r18, r25
+ 270:	31 09       	sbc	r19, r1
+ 272:	2f 77       	andi	r18, 0x7F	; 127
+ 274:	33 27       	eor	r19, r19
+ 276:	28 30       	cpi	r18, 0x08	; 8
+ 278:	31 05       	cpc	r19, r1
+ 27a:	0c f0       	brlt	.+2      	; 0x27e <__vector_18+0xf2>
+ 27c:	58 c0       	rjmp	.+176    	; 0x32e <__vector_18+0x1a2>
+		unsigned char pos;
+ 		pos = rx_on & (RX_SIZE-1);
+ 27e:	e8 2f       	mov	r30, r24
+ 280:	e7 70       	andi	r30, 0x07	; 7
+ 		//Read length
+		rx_frames[pos].length = CANCDMOB & 0x0F;
+ 282:	90 91 ef 00 	lds	r25, 0x00EF
+ 286:	2e 2f       	mov	r18, r30
+ 288:	30 e0       	ldi	r19, 0x00	; 0
+ 28a:	4b e0       	ldi	r20, 0x0B	; 11
+ 28c:	e4 9f       	mul	r30, r20
+ 28e:	f0 01       	movw	r30, r0
+ 290:	11 24       	eor	r1, r1
+ 292:	e0 5a       	subi	r30, 0xA0	; 160
+ 294:	fe 4f       	sbci	r31, 0xFE	; 254
+ 296:	9f 70       	andi	r25, 0x0F	; 15
+ 298:	42 81       	ldd	r20, Z+2	; 0x02
+ 29a:	40 7f       	andi	r20, 0xF0	; 240
+ 29c:	94 2b       	or	r25, r20
+ 29e:	92 83       	std	Z+2, r25	; 0x02
+		//Read ID
+		#if CAN_V==CAN2A
+		rx_frames[pos].array[0] = (CANIDT2 & 0xE0) | (CANIDT4 & 0x07);
+ 2a0:	90 91 f2 00 	lds	r25, 0x00F2
+ 2a4:	40 91 f0 00 	lds	r20, 0x00F0
+ 2a8:	47 70       	andi	r20, 0x07	; 7
+ 2aa:	90 7e       	andi	r25, 0xE0	; 224
+ 2ac:	94 2b       	or	r25, r20
+ 2ae:	90 83       	st	Z, r25
+		rx_frames[pos].array[1] = CANIDT1;
+ 2b0:	90 91 f3 00 	lds	r25, 0x00F3
+ 2b4:	91 83       	std	Z+1, r25	; 0x01
+		rx_frames[pos].array[2] = CANIDT2;
+		rx_frames[pos].array[3] = CANIDT1;
+		#endif
+
+		//read data registers - auto increment CANMSG
+		rx_frames[pos].data[0] = CANMSG;
+ 2b6:	aa ef       	ldi	r26, 0xFA	; 250
+ 2b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ba:	9c 91       	ld	r25, X
+ 2bc:	93 83       	std	Z+3, r25	; 0x03
+		rx_frames[pos].data[1] = CANMSG;
+ 2be:	9c 91       	ld	r25, X
+ 2c0:	94 83       	std	Z+4, r25	; 0x04
+		rx_frames[pos].data[2] = CANMSG;
+ 2c2:	9c 91       	ld	r25, X
+ 2c4:	95 83       	std	Z+5, r25	; 0x05
+		rx_frames[pos].data[3] = CANMSG;
+ 2c6:	9c 91       	ld	r25, X
+ 2c8:	96 83       	std	Z+6, r25	; 0x06
+		rx_frames[pos].data[4] = CANMSG;
+ 2ca:	9c 91       	ld	r25, X
+ 2cc:	97 83       	std	Z+7, r25	; 0x07
+		rx_frames[pos].data[5] = CANMSG;
+ 2ce:	9c 91       	ld	r25, X
+ 2d0:	90 87       	std	Z+8, r25	; 0x08
+		rx_frames[pos].data[6] = CANMSG;
+ 2d2:	9c 91       	ld	r25, X
+ 2d4:	91 87       	std	Z+9, r25	; 0x09
+		rx_frames[pos].data[7] = CANMSG;
+ 2d6:	9c 91       	ld	r25, X
+ 2d8:	92 87       	std	Z+10, r25	; 0x0a
+ 		rx_on++;
+ 2da:	8f 5f       	subi	r24, 0xFF	; 255
+ 2dc:	80 93 01 01 	sts	0x0101, r24
+
+		//reset if reset can message
+		if(rx_frames[pos].id == 0x000 && rx_frames[pos].data[0] == 0x03){
+ 2e0:	40 81       	ld	r20, Z
+ 2e2:	42 95       	swap	r20
+ 2e4:	46 95       	lsr	r20
+ 2e6:	47 70       	andi	r20, 0x07	; 7
+ 2e8:	51 81       	ldd	r21, Z+1	; 0x01
+ 2ea:	65 2f       	mov	r22, r21
+ 2ec:	66 0f       	add	r22, r22
+ 2ee:	66 0f       	add	r22, r22
+ 2f0:	66 0f       	add	r22, r22
+ 2f2:	86 2f       	mov	r24, r22
+ 2f4:	84 2b       	or	r24, r20
+ 2f6:	95 2f       	mov	r25, r21
+ 2f8:	92 95       	swap	r25
+ 2fa:	96 95       	lsr	r25
+ 2fc:	97 70       	andi	r25, 0x07	; 7
+ 2fe:	89 2b       	or	r24, r25
+ 300:	b1 f4       	brne	.+44     	; 0x32e <__vector_18+0x1a2>
+ 302:	8b e0       	ldi	r24, 0x0B	; 11
+ 304:	82 9f       	mul	r24, r18
+ 306:	f0 01       	movw	r30, r0
+ 308:	83 9f       	mul	r24, r19
+ 30a:	f0 0d       	add	r31, r0
+ 30c:	11 24       	eor	r1, r1
+ 30e:	e0 5a       	subi	r30, 0xA0	; 160
+ 310:	fe 4f       	sbci	r31, 0xFE	; 254
+ 312:	83 81       	ldd	r24, Z+3	; 0x03
+ 314:	83 30       	cpi	r24, 0x03	; 3
+ 316:	59 f4       	brne	.+22     	; 0x32e <__vector_18+0x1a2>
+				: "r0"
+		);
+	}
+	else
+	{
+		__asm__ __volatile__ (
+ 318:	98 e0       	ldi	r25, 0x08	; 8
+ 31a:	88 e1       	ldi	r24, 0x18	; 24
+ 31c:	0f b6       	in	r0, 0x3f	; 63
+ 31e:	f8 94       	cli
+ 320:	a8 95       	wdr
+ 322:	80 93 60 00 	sts	0x0060, r24
+ 326:	0f be       	out	0x3f, r0	; 63
+ 328:	90 93 60 00 	sts	0x0060, r25
+			wdt_enable(WDTO_15MS);
+			while(1); //wait for watchdog
+ 32c:	ff cf       	rjmp	.-2      	; 0x32c <__vector_18+0x1a0>
+		}
+
+
+ 	}
+	//clear irq
+	canstmod = CANSTMOB;
+ 32e:	ee ee       	ldi	r30, 0xEE	; 238
+ 330:	f0 e0       	ldi	r31, 0x00	; 0
+ 332:	80 81       	ld	r24, Z
+ 334:	89 83       	std	Y+1, r24	; 0x01
+	CANSTMOB&= ~_BV(RXOK);
+ 336:	80 81       	ld	r24, Z
+ 338:	8f 7d       	andi	r24, 0xDF	; 223
+ 33a:	80 83       	st	Z, r24
+	CANCDMOB = _BV(CONMOB1) | CAN_IDE;			//Set Mob 1 as RX and IDE
+ 33c:	80 e8       	ldi	r24, 0x80	; 128
+ 33e:	80 93 ef 00 	sts	0x00EF, r24
+
+ }
+}
+ 342:	0f 90       	pop	r0
+ 344:	df 91       	pop	r29
+ 346:	cf 91       	pop	r28
+ 348:	ff 91       	pop	r31
+ 34a:	ef 91       	pop	r30
+ 34c:	bf 91       	pop	r27
+ 34e:	af 91       	pop	r26
+ 350:	9f 91       	pop	r25
+ 352:	8f 91       	pop	r24
+ 354:	6f 91       	pop	r22
+ 356:	5f 91       	pop	r21
+ 358:	4f 91       	pop	r20
+ 35a:	3f 91       	pop	r19
+ 35c:	2f 91       	pop	r18
+ 35e:	0f 90       	pop	r0
+ 360:	0b be       	out	0x3b, r0	; 59
+ 362:	0f 90       	pop	r0
+ 364:	0f be       	out	0x3f, r0	; 63
+ 366:	0f 90       	pop	r0
+ 368:	1f 90       	pop	r1
+ 36a:	18 95       	reti
+
+0000036c <send_can_frame>:
+
+/**************************************************************************************************
+*   send_can_frame(); - See 'can.h' Header file for Description
+**************************************************************************************************/
+unsigned char send_can_frame(union can_frame *frame)
+{
+ 36c:	dc 01       	movw	r26, r24
+ unsigned char result;
+
+ result = 0;
+ CANGIE&= ~_BV(ENIT);
+ 36e:	eb ed       	ldi	r30, 0xDB	; 219
+ 370:	f0 e0       	ldi	r31, 0x00	; 0
+ 372:	80 81       	ld	r24, Z
+ 374:	8f 77       	andi	r24, 0x7F	; 127
+ 376:	80 83       	st	Z, r24
+ if (!tx_busy) {
+ 378:	80 91 03 01 	lds	r24, 0x0103
+ 37c:	81 11       	cpse	r24, r1
+ 37e:	3a c0       	rjmp	.+116    	; 0x3f4 <send_can_frame+0x88>
+	CANPAGE = 0 << 4;							//Switch to Mob 0 access
+ 380:	10 92 ed 00 	sts	0x00ED, r1
+	//set ID
+	#if CAN_V==CAN2A
+	CANIDT4 = frame->array[0];
+ 384:	8c 91       	ld	r24, X
+ 386:	80 93 f0 00 	sts	0x00F0, r24
+	CANIDT2 = frame->array[0];
+ 38a:	8c 91       	ld	r24, X
+ 38c:	80 93 f2 00 	sts	0x00F2, r24
+	CANIDT1 = frame->array[1];
+ 390:	11 96       	adiw	r26, 0x01	; 1
+ 392:	8c 91       	ld	r24, X
+ 394:	11 97       	sbiw	r26, 0x01	; 1
+ 396:	80 93 f3 00 	sts	0x00F3, r24
+	CANIDT3 = frame->array[1];
+	CANIDT2 = frame->array[2];
+	CANIDT1 = frame->array[3];
+	#endif
+	//program data registers - auto increment
+	CANMSG = frame->data[0];
+ 39a:	13 96       	adiw	r26, 0x03	; 3
+ 39c:	8c 91       	ld	r24, X
+ 39e:	13 97       	sbiw	r26, 0x03	; 3
+ 3a0:	ea ef       	ldi	r30, 0xFA	; 250
+ 3a2:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a4:	80 83       	st	Z, r24
+	CANMSG = frame->data[1];
+ 3a6:	14 96       	adiw	r26, 0x04	; 4
+ 3a8:	8c 91       	ld	r24, X
+ 3aa:	14 97       	sbiw	r26, 0x04	; 4
+ 3ac:	80 83       	st	Z, r24
+	CANMSG = frame->data[2];
+ 3ae:	15 96       	adiw	r26, 0x05	; 5
+ 3b0:	8c 91       	ld	r24, X
+ 3b2:	15 97       	sbiw	r26, 0x05	; 5
+ 3b4:	80 83       	st	Z, r24
+	CANMSG = frame->data[3];
+ 3b6:	16 96       	adiw	r26, 0x06	; 6
+ 3b8:	8c 91       	ld	r24, X
+ 3ba:	16 97       	sbiw	r26, 0x06	; 6
+ 3bc:	80 83       	st	Z, r24
+	CANMSG = frame->data[4];
+ 3be:	17 96       	adiw	r26, 0x07	; 7
+ 3c0:	8c 91       	ld	r24, X
+ 3c2:	17 97       	sbiw	r26, 0x07	; 7
+ 3c4:	80 83       	st	Z, r24
+	CANMSG = frame->data[5];
+ 3c6:	18 96       	adiw	r26, 0x08	; 8
+ 3c8:	8c 91       	ld	r24, X
+ 3ca:	18 97       	sbiw	r26, 0x08	; 8
+ 3cc:	80 83       	st	Z, r24
+	CANMSG = frame->data[6];
+ 3ce:	19 96       	adiw	r26, 0x09	; 9
+ 3d0:	8c 91       	ld	r24, X
+ 3d2:	19 97       	sbiw	r26, 0x09	; 9
+ 3d4:	80 83       	st	Z, r24
+	CANMSG = frame->data[7];
+ 3d6:	1a 96       	adiw	r26, 0x0a	; 10
+ 3d8:	8c 91       	ld	r24, X
+ 3da:	1a 97       	sbiw	r26, 0x0a	; 10
+ 3dc:	80 83       	st	Z, r24
+	result = 1;
+	tx_busy = 1;
+ 3de:	81 e0       	ldi	r24, 0x01	; 1
+ 3e0:	80 93 03 01 	sts	0x0103, r24
+	//set length, start send which restarts tx interrupt
+	CANCDMOB = _BV(CONMOB0) | CAN_IDE | frame->length;
+ 3e4:	12 96       	adiw	r26, 0x02	; 2
+ 3e6:	8c 91       	ld	r24, X
+ 3e8:	8f 70       	andi	r24, 0x0F	; 15
+ 3ea:	80 64       	ori	r24, 0x40	; 64
+ 3ec:	80 93 ef 00 	sts	0x00EF, r24
+	CANMSG = frame->data[3];
+	CANMSG = frame->data[4];
+	CANMSG = frame->data[5];
+	CANMSG = frame->data[6];
+	CANMSG = frame->data[7];
+	result = 1;
+ 3f0:	81 e0       	ldi	r24, 0x01	; 1
+ 3f2:	26 c0       	rjmp	.+76     	; 0x440 <send_can_frame+0xd4>
+	tx_busy = 1;
+	//set length, start send which restarts tx interrupt
+	CANCDMOB = _BV(CONMOB0) | CAN_IDE | frame->length;
+ }
+ else if (TX_SIZE - ((tx_on - tx_off) & TX_ABS_MASK)) {
+ 3f4:	60 91 04 01 	lds	r22, 0x0104
+ 3f8:	86 2f       	mov	r24, r22
+ 3fa:	90 e0       	ldi	r25, 0x00	; 0
+ 3fc:	20 91 05 01 	lds	r18, 0x0105
+ 400:	82 1b       	sub	r24, r18
+ 402:	91 09       	sbc	r25, r1
+ 404:	8f 77       	andi	r24, 0x7F	; 127
+ 406:	99 27       	eor	r25, r25
+ 408:	08 97       	sbiw	r24, 0x08	; 8
+ 40a:	c9 f0       	breq	.+50     	; 0x43e <send_can_frame+0xd2>
+ 40c:	20 e0       	ldi	r18, 0x00	; 0
+ 40e:	30 e0       	ldi	r19, 0x00	; 0
+ 	result = 1;
+	unsigned char i;
+ 	for (i=0;i<CAN_FRAME_SIZE;i++) {
+		tx_frames[tx_on & (TX_SIZE-1)].array[i] = frame->array[i];
+ 410:	46 2f       	mov	r20, r22
+ 412:	47 70       	andi	r20, 0x07	; 7
+ 414:	8b e0       	ldi	r24, 0x0B	; 11
+ 416:	48 9f       	mul	r20, r24
+ 418:	a0 01       	movw	r20, r0
+ 41a:	11 24       	eor	r1, r1
+ 41c:	8d 91       	ld	r24, X+
+ 41e:	fa 01       	movw	r30, r20
+ 420:	e2 0f       	add	r30, r18
+ 422:	f3 1f       	adc	r31, r19
+ 424:	e8 5f       	subi	r30, 0xF8	; 248
+ 426:	fe 4f       	sbci	r31, 0xFE	; 254
+ 428:	80 83       	st	Z, r24
+ 42a:	2f 5f       	subi	r18, 0xFF	; 255
+ 42c:	3f 4f       	sbci	r19, 0xFF	; 255
+	CANCDMOB = _BV(CONMOB0) | CAN_IDE | frame->length;
+ }
+ else if (TX_SIZE - ((tx_on - tx_off) & TX_ABS_MASK)) {
+ 	result = 1;
+	unsigned char i;
+ 	for (i=0;i<CAN_FRAME_SIZE;i++) {
+ 42e:	2b 30       	cpi	r18, 0x0B	; 11
+ 430:	31 05       	cpc	r19, r1
+ 432:	a1 f7       	brne	.-24     	; 0x41c <send_can_frame+0xb0>
+		tx_frames[tx_on & (TX_SIZE-1)].array[i] = frame->array[i];
+ 	}
+	tx_on++;
+ 434:	6f 5f       	subi	r22, 0xFF	; 255
+ 436:	60 93 04 01 	sts	0x0104, r22
+ 	result = 1;
+ 43a:	81 e0       	ldi	r24, 0x01	; 1
+ 43c:	01 c0       	rjmp	.+2      	; 0x440 <send_can_frame+0xd4>
+**************************************************************************************************/
+unsigned char send_can_frame(union can_frame *frame)
+{
+ unsigned char result;
+
+ result = 0;
+ 43e:	80 e0       	ldi	r24, 0x00	; 0
+		tx_frames[tx_on & (TX_SIZE-1)].array[i] = frame->array[i];
+ 	}
+	tx_on++;
+ 	result = 1;
+ }
+ CANGIE|= _BV(ENIT);
+ 440:	eb ed       	ldi	r30, 0xDB	; 219
+ 442:	f0 e0       	ldi	r31, 0x00	; 0
+ 444:	90 81       	ld	r25, Z
+ 446:	90 68       	ori	r25, 0x80	; 128
+ 448:	90 83       	st	Z, r25
+ return result;
+}
+ 44a:	08 95       	ret
+
+0000044c <toggleLed>:
+#include "Timer0.h"
+
+volatile int state = 0;
+
+void toggleLed(){		//switches light on and off
+	if (state == 0)		//if off
+ 44c:	80 91 06 01 	lds	r24, 0x0106
+ 450:	90 91 07 01 	lds	r25, 0x0107
+ 454:	89 2b       	or	r24, r25
+ 456:	51 f4       	brne	.+20     	; 0x46c <toggleLed+0x20>
+	{
+		PORTB &= ~((1 << PB5)|(1<<PB6)|(1<<PB7));
+ 458:	85 b1       	in	r24, 0x05	; 5
+ 45a:	8f 71       	andi	r24, 0x1F	; 31
+ 45c:	85 b9       	out	0x05, r24	; 5
+		state = 1;
+ 45e:	81 e0       	ldi	r24, 0x01	; 1
+ 460:	90 e0       	ldi	r25, 0x00	; 0
+ 462:	90 93 07 01 	sts	0x0107, r25
+ 466:	80 93 06 01 	sts	0x0106, r24
+ 46a:	08 95       	ret
+		} else {		//if on
+		PORTB |= (1 << PB5)|(1<<PB6)|(1<<PB7);
+ 46c:	85 b1       	in	r24, 0x05	; 5
+ 46e:	80 6e       	ori	r24, 0xE0	; 224
+ 470:	85 b9       	out	0x05, r24	; 5
+		state = 0;
+ 472:	10 92 07 01 	sts	0x0107, r1
+ 476:	10 92 06 01 	sts	0x0106, r1
+ 47a:	08 95       	ret
+
+0000047c <main>:
+	}
+}
+
+int main(void) {
+ 47c:	cf 93       	push	r28
+ 47e:	df 93       	push	r29
+ 480:	cd b7       	in	r28, 0x3d	; 61
+ 482:	de b7       	in	r29, 0x3e	; 62
+ 484:	2b 97       	sbiw	r28, 0x0b	; 11
+ 486:	0f b6       	in	r0, 0x3f	; 63
+ 488:	f8 94       	cli
+ 48a:	de bf       	out	0x3e, r29	; 62
+ 48c:	0f be       	out	0x3f, r0	; 63
+ 48e:	cd bf       	out	0x3d, r28	; 61
+	
+	cli();			//Setup CAN
+ 490:	f8 94       	cli
+	init_can();
+ 492:	3a de       	rcall	.-908    	; 0x108 <init_can>
+	adc_init();
+ 494:	10 de       	rcall	.-992    	; 0xb6 <adc_init>
+	init_Timer0();
+ 496:	30 d0       	rcall	.+96     	; 0x4f8 <init_Timer0>
+	
+	DDRB |= 0b11111111;
+ 498:	84 b1       	in	r24, 0x04	; 4
+ 49a:	8f ef       	ldi	r24, 0xFF	; 255
+ 49c:	84 b9       	out	0x04, r24	; 4
+	PORTB |= (1 << PB5)|(1<<PB6)|(1<<PB7);
+ 49e:	85 b1       	in	r24, 0x05	; 5
+ 4a0:	80 6e       	ori	r24, 0xE0	; 224
+ 4a2:	85 b9       	out	0x05, r24	; 5
+	sei();
+ 4a4:	78 94       	sei
+	
+	union can_frame Message;
+	Message.id = MOTOR_ID;
+ 4a6:	89 81       	ldd	r24, Y+1	; 0x01
+ 4a8:	8f 71       	andi	r24, 0x1F	; 31
+ 4aa:	89 83       	std	Y+1, r24	; 0x01
+ 4ac:	1a 82       	std	Y+2, r1	; 0x02
+	Message.length = 1;
+ 4ae:	8b 81       	ldd	r24, Y+3	; 0x03
+ 4b0:	80 7f       	andi	r24, 0xF0	; 240
+ 4b2:	81 60       	ori	r24, 0x01	; 1
+ 4b4:	8b 83       	std	Y+3, r24	; 0x03
+	
+	while(1) {
+		if(TCNT1 > 15) {
+ 4b6:	04 e8       	ldi	r16, 0x84	; 132
+ 4b8:	10 e0       	ldi	r17, 0x00	; 0
+ 4ba:	f8 01       	movw	r30, r16
+ 4bc:	80 81       	ld	r24, Z
+ 4be:	91 81       	ldd	r25, Z+1	; 0x01
+ 4c0:	40 97       	sbiw	r24, 0x10	; 16
+ 4c2:	a0 f0       	brcs	.+40     	; 0x4ec <main+0x70>
+			toggleLed();
+ 4c4:	c3 df       	rcall	.-122    	; 0x44c <toggleLed>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4c6:	ff e7       	ldi	r31, 0x7F	; 127
+ 4c8:	28 e3       	ldi	r18, 0x38	; 56
+ 4ca:	81 e0       	ldi	r24, 0x01	; 1
+ 4cc:	f1 50       	subi	r31, 0x01	; 1
+ 4ce:	20 40       	sbci	r18, 0x00	; 0
+ 4d0:	80 40       	sbci	r24, 0x00	; 0
+ 4d2:	e1 f7       	brne	.-8      	; 0x4cc <main+0x50>
+ 4d4:	00 c0       	rjmp	.+0      	; 0x4d6 <main+0x5a>
+ 4d6:	00 00       	nop
+			_delay_ms(50);
+			toggleLed();
+ 4d8:	b9 df       	rcall	.-142    	; 0x44c <toggleLed>
+ 4da:	9f e7       	ldi	r25, 0x7F	; 127
+ 4dc:	e8 e3       	ldi	r30, 0x38	; 56
+ 4de:	f1 e0       	ldi	r31, 0x01	; 1
+ 4e0:	91 50       	subi	r25, 0x01	; 1
+ 4e2:	e0 40       	sbci	r30, 0x00	; 0
+ 4e4:	f0 40       	sbci	r31, 0x00	; 0
+ 4e6:	e1 f7       	brne	.-8      	; 0x4e0 <main+0x64>
+ 4e8:	00 c0       	rjmp	.+0      	; 0x4ea <main+0x6e>
+ 4ea:	00 00       	nop
+			_delay_ms(50);
+		}
+		Message.data[0] = adc_read();
+ 4ec:	f6 dd       	rcall	.-1044   	; 0xda <adc_read>
+ 4ee:	8c 83       	std	Y+4, r24	; 0x04
+		send_can_frame(&Message);
+ 4f0:	ce 01       	movw	r24, r28
+ 4f2:	01 96       	adiw	r24, 0x01	; 1
+ 4f4:	3b df       	rcall	.-394    	; 0x36c <send_can_frame>
+	}
+ 4f6:	e1 cf       	rjmp	.-62     	; 0x4ba <main+0x3e>
+
+000004f8 <init_Timer0>:
+
+#include <avr/io.h>
+
+void init_Timer0() {
+	/* Timer clock = I/O clock / 1024 */
+	TCCR0A = (1<<CS02)|(1<<CS00);
+ 4f8:	85 e0       	ldi	r24, 0x05	; 5
+ 4fa:	84 bd       	out	0x24, r24	; 36
+	/* Clear overflow flag */
+	TIFR0 = 1<<TOV0;
+ 4fc:	81 e0       	ldi	r24, 0x01	; 1
+ 4fe:	85 bb       	out	0x15, r24	; 21
+	/* Enable Overflow Interrupt */
+	TIMSK0 = 1<<TOIE0;
+ 500:	80 93 6e 00 	sts	0x006E, r24
+ 504:	08 95       	ret
+
+00000506 <_exit>:
+ 506:	f8 94       	cli
+
+00000508 <__stop_program>:
+ 508:	ff cf       	rjmp	.-2      	; 0x508 <__stop_program>
