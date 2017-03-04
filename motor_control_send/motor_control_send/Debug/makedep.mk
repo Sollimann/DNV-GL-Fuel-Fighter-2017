@@ -8,5 +8,3 @@ can.c
 
 main.c
 
-Timer0.c
-

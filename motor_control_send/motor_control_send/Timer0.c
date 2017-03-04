@@ -9,12 +9,11 @@
 
 void init_Timer0() {
 	/* Timer clock = I/O clock / 1024 */
-	TCCR0A = (1<<CS02)|(1<<CS00);
-	/* Clear overflow flag */
-	TIFR0 = 1<<TOV0;
-	/* Enable Overflow Interrupt */
-	TIMSK0 = 1<<TOIE0;
-}ISR (TIMER0_OVF_vect)
-{
-	
+	TCCR0A |= (1 << CS01);
+	TCNT0 = 0;
 }
+
+ISR(TIMER0_OVF_vect) {
+	tot_overflow++;
+}
+

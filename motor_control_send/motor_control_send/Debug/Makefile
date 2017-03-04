@@ -39,8 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../adc.c \
 ../can.c \
-../main.c \
-../Timer0.c
+../main.c
 
 
 PREPROCESSING_SRCS += 
@@ -52,26 +51,22 @@ ASM_SRCS +=
 OBJS +=  \
 adc.o \
 can.o \
-main.o \
-Timer0.o
+main.o
 
 OBJS_AS_ARGS +=  \
 adc.o \
 can.o \
-main.o \
-Timer0.o
+main.o
 
 C_DEPS +=  \
 adc.d \
 can.d \
-main.d \
-Timer0.d
+main.d
 
 C_DEPS_AS_ARGS +=  \
 adc.d \
 can.d \
-main.d \
-Timer0.d
+main.d
 
 OUTPUT_FILE_PATH +=motor_control_send.elf
 
@@ -87,8 +82,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
 
 
 
