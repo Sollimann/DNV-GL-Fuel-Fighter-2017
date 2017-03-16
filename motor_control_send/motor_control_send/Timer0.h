@@ -9,5 +9,5 @@
 #define TIMER0_H_
 
 void init_Timer0(void);
-
+extern volatile uint8_t* tot_overflow;
 #endif /* TIMER0_H_ */

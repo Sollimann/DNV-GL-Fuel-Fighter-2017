@@ -33,4 +33,6 @@
 
 void toggleLed(void);
 
+void colorADC(uint8_t val);
+
 #endif /* DEFINITIONS_H_ */
